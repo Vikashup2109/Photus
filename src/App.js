@@ -12,7 +12,7 @@ function App() {
 		<>
 			<Navbar searchQuery={(text) => setQuery(text)} />
 			<Routes>
-				<Route exact path="/unsplash" element={<Unsplash term={query}/>} />
+				<Route exact path="/" element={<Unsplash term={query}/>} />
 				<Route exact path="/pixabay" element={<Pixabay term={query}/>} />
 				<Route exact path="/pexels" element={<Pexels term={query}/>} />
 			</Routes>
