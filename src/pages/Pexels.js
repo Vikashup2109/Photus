@@ -6,10 +6,9 @@ import { saveAs } from 'file-saver';
 
 const getRandomPage = () => Math.round(Math.random()*10);
 
-const Pexels = () => {
+const Pexels = (props) => {
 
 	const [images, setImages] = useState([]);
-	const [term, setTerm] = useState('river');
 	const [isLoading, setIsLoading] = useState(true);
 	const [model, setModel] = useState(false);
 	const [tempImg, setTempImg] = useState({});
@@ -18,7 +17,7 @@ const Pexels = () => {
 		let url = new URL('https://api.pexels.com/v1/search');
 
 		url.search = new URLSearchParams({
-			query: term,
+			query: props.term,
 			orientation: '',
 			per_page: 20,
 			page: getRandomPage()
@@ -37,10 +36,9 @@ const Pexels = () => {
 			setIsLoading(false);
 		})
 		.catch((err) => console.log(err));
-	}, [term])
+	}, [props.term])
 
 	const openModelPopUp = (TempImage) => {
-		// console.log("Hello")
 		setTempImg(TempImage);
 		setModel(true);
 	}
@@ -54,7 +52,6 @@ const Pexels = () => {
 
 	return(
 		<>
-			<Navbar searchQuery={(text) => setTerm(text)} />
 				{isLoading ? (
 					<h1 className="text-6xl text-center mx-auto my-auto">Loading...</h1>
 				) : (

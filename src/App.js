@@ -1,21 +1,20 @@
-import React from 'react';
+import React , {useState} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Pexels from './pages/Pexels';
 import Pixabay from './pages/Pixabay';
 import Unsplash from './pages/Unsplash';
-import All from './pages/All'
 
 function App() {
+
+	const [query, setQuery] = useState('river');
 	return (
 		<>
-			{/* <Navbar/> */}
+			<Navbar searchQuery={(text) => setQuery(text)} />
 			<Routes>
-				<Route exact path="/" element={<All />} />
-				<Route exact path="/unsplash" element={<Unsplash />} />
-				<Route exact path="/pixabay" element={<Pixabay />} />
-				<Route exact path="/pexels" element={<Pexels />} />
-				{/* <Unsplash /> */}
+				<Route exact path="/unsplash" element={<Unsplash term={query}/>} />
+				<Route exact path="/pixabay" element={<Pixabay term={query}/>} />
+				<Route exact path="/pexels" element={<Pexels term={query}/>} />
 			</Routes>
 		</>
 	);

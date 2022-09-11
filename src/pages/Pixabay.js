@@ -3,15 +3,14 @@ import { saveAs } from 'file-saver';
 import ImageCardPixabay from '../components/ImageCardPixabay';
 import Navbar from '../components/Navbar';
 
-const Pixabay = () => {
+const Pixabay = (props) => {
 	const [images, setImages] = useState([]);
-	const [query, setQuery] = useState('');
 	const [isLoading, setIsLoading] = useState(true);
 	const [model, setModel] = useState(false);
 	const [tempImg, setTempImg] = useState({});
 
 	
-	const baseURL = `https://pixabay.com/api/?key=29413394-debf50fddeaeb13c144632614&q=${query}&image_type=photo&pretty=true`
+	const baseURL = `https://pixabay.com/api/?key=29413394-debf50fddeaeb13c144632614&q=${props.term}&image_type=photo&pretty=true`
 	
 	useEffect(() => {
 		fetch(baseURL)
@@ -21,7 +20,7 @@ const Pixabay = () => {
 				setIsLoading(false);
 			})
 			.catch((err) => console.log(err));
-	}, [query]);
+	}, [props.term]);
 
 	const openModelPopUp = (TempImage) => {
 		// console.log("Hello")
@@ -41,7 +40,6 @@ const Pixabay = () => {
 
 	return (
 		<>
-			<Navbar searchQuery={(text) => setQuery(text)} />
 				{isLoading ? (
 					<h1 className="text-6xl text-center mx-auto my-auto">Loading...</h1>
 				) : (

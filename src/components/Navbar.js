@@ -20,9 +20,6 @@ const Navbar = (props) => {
 					<img src={Logo} alt="" className="p-1  h-10 w-[151px] md:h-12 md:w-[182px] mx-auto" />
 				</div>
 				<div className='w-1/2 md:w-2/5 xl:w-3/6 space-x-0 lg:space-x-4 font-sans font-bold text-white text-base lg:text-xl self-center text-center'>
-							<Link to="/">
-								<button className='bg-gray-700 hover:bg-white hover:text-gray-700 focus:text-gray-700 focus:bg-white rounded-lg px-2 py-1 md:px-3 md:py-2'>All</button>
-							</Link>
 							<Link to="/Unsplash">
 								<button className='bg-gray-700 hover:bg-white hover:text-gray-700 focus:text-gray-700 focus:bg-white rounded-lg px-2 py-1 md:px-3 md:py-2'>Unsplash</button>
 							</Link>

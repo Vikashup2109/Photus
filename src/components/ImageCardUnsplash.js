@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { saveAs } from 'file-saver';
-import 'boxicons'
 
 
-const ImageCard = (props) => {
+const ImageCardUnsplash = (props) => {
 	const saveFile = () => {
 		saveAs(
 			props.image.urls.raw,
@@ -43,4 +42,4 @@ const ImageCard = (props) => {
 	);
 };
 
-export default ImageCard;
+export default ImageCardUnsplash;

@@ -1,28 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { saveAs } from 'file-saver';
-import ImageCard from '../components/ImageCard';
-import Navbar from '../components/Navbar';
+import ImageCardUnsplash from '../components/ImageCardUnsplash';
 
 // const getRandomPage = () => Math.round(Math.random()*10);
 
 const Unsplash = (props) => {
 	const [images, setImages] = useState([]);
-	const [query, setQuery] = useState('river');
 	const [isLoading, setIsLoading] = useState(true);
 	const [model, setModel] = useState(false);
 	const [tempImg, setTempImg] = useState({});
 
-	const baseURL = `https://api.unsplash.com/search/photos?page=2&query=${query}&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`
+	const baseURL = `https://api.unsplash.com/search/photos?page=2&query=${props.term}&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`
 
 	useEffect(() => {
 		fetch(baseURL)
 			.then((res) => res.json())
 			.then((data) => {
 				setImages(data.results);
+				// console.log(images)
 				setIsLoading(false);
 			})
 			.catch((err) => console.log(err));
-	}, [query]);
+	}, [props.term]);
 
 	const openModelPopUp = (TempImage) => {
 		setTempImg(TempImage);
@@ -39,7 +38,7 @@ const Unsplash = (props) => {
 
 	return (
 		<>
-			<Navbar searchQuery={(text) => setQuery(text)} />
+			{/* <Navbar searchQuery={(text) => setQuery(text)} /> */}
 				{isLoading ? (
 					<h1 className="text-6xl text-center mx-auto my-auto">Loading...</h1>
 				) : (
@@ -48,7 +47,7 @@ const Unsplash = (props) => {
 								return(
 									<>
 										<div key={image.id} onClick={() => openModelPopUp(image)}>
-											<ImageCard key={image.id}  image={image} />
+											<ImageCardUnsplash key={image.id}  image={image} />
 										</div>
 									</>
 								)
